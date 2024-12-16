@@ -49,6 +49,34 @@
 
 - 主启动文件，配置 Web 服务器并监听端口 `3000`。
 
+## 路由控制器的写法：
+
+以 productController.js 举例：
+```
+module.exports = {
+    get: { // api 的 RESTful API 的方法
+        createProduct: { // 这里的名字和 控制器文件名一致
+            path: '/product', //这里是设定的路由路径
+            fn: (req, res) => {
+                const product = req.query;
+                res.json({ message: 'Product created', product }); //返回相应的数据
+            },
+        }
+    },
+    post: {
+        createProduct: {
+            path: '/product',
+            fn: (req, res) => {
+                const product = req.body
+                res.send({ message: product.pd });
+            },
+        }
+    }
+    // 更多方法...
+};
+```
+
+
 ## 功能概述
 
 - **控制器**：负责业务逻辑，处理路由请求并返回数据。
