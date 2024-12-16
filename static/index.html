@@ -1,0 +1,46 @@
+<body style="padding-top: 30px">
+    <div>本表单会被POST到： <span id="api"></span></div>
+
+
+    <form id="productForm">
+        <input type="text" id="pd" name="pd">
+        <button type="submit">Submit</button>
+    </form>
+    <div >你提交的是：
+    <span id="res"></span>
+    
+    </div>
+    
+</body>
+<script>
+    const api = 'http://127.0.0.1:3000/product'
+    document.getElementById('api').innerText= api
+    // 监听表单提交事件
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+
+        event.preventDefault(); // 阻止默认表单提交
+        document.getElementById('res').innerText='提交中...'
+
+        // 获取输入的值
+        var pdValue = document.getElementById('pd').value;
+
+        // 使用 fetch 发送 POST 请求
+        fetch(api, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // 发送 JSON 格式的数据
+            },
+            body: JSON.stringify({ pd: pdValue }) // 将输入值包装为 JSON 格式的请求体
+        })
+        .then(response => response.json()) // 解析 JSON 响应
+        .then(data => {
+            // 处理成功的响应
+            document.getElementById('res').innerText=data.message
+
+        })
+        .catch(error => {
+            // 处理错误
+            console.error('Error:', error);
+        });
+    });
+</script>
