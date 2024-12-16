@@ -1,6 +1,4 @@
-以下是根据你提供的内容编写的 README 文件：
 
-```markdown
 # Node.js Web Server Router
 
 这是一个基于 Node.js 开发的 Web 服务器路由器。项目包括路由配置、控制器、静态网页等功能。启动后，会在 `http://127.0.0.1:3000` 上启动一个 Web 服务器。
